@@ -4,16 +4,21 @@ const { response } = require('./app')
 console.log("Hi coyote, let's have some JavaScript fun!")
 
 // Fetch users with axios
-axios.get('http://localhost:3000/users').then(response => {
+/* axios.get('http://localhost:3000/users').then(response => {
   console.log(response.data)
-})
+}) */
 
 // create a user with axios
+//An asynchronous function delivers its result asynchronously
+// for example, a callback-based function or a Promise-based function.
+// Promise constructor takes only one argument
+// Callback function takes two arguments, resolve and reject.
 
-axios
-  .post('https://localhost:3000/users', {
+async function main() {
+  const gurpreet = await axios.post('https://localhost:3000/users', {
     name: 'Gurpreet',
   })
-  .then(response => {
-    console.log(response.data)
-  })
+  console.log(Gurpreet.data)
+}
+
+main()
