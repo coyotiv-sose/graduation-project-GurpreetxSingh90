@@ -18,7 +18,7 @@ async function main() {
   const gurpreet = await axios.post('https://localhost:3000/users', {
     name: 'Gurpreet',
   })
-  console.log(Gurpreet.data)
+  console.log(gurpreet.data)
 }
 
 main()
