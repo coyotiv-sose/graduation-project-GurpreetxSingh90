@@ -1,4 +1,4 @@
-const { default: axios } = require('axios')
+const axios = require('axios')
 
 console.log("Hi coyote, let's have some JavaScript fun!")
 
