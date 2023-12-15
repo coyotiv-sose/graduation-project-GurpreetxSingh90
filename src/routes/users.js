@@ -3,19 +3,24 @@ var router = express.Router()
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-  res.send([{ name: 'John Doe' }, { name: 'Jane Doe' }])
-})
-/*  res.render('users', {
-    user: {
-      name: 'John Doe',
-    },
-    users: [{ name: 'John Doe' }, { name: 'Jane' }],
+  res.send({
+    users: [
+      { name: 'John Doe', email: 'john@doe.com' },
+      { name: 'Jane Doe', email: 'jane@doe.com' },
+    ],
   })
-}) */
-
-/* Create a new user */
-router.post('/', function (req, res, next) {
-  const user = new User(req.body.name)
-  res.send(user)
 })
+
+router.put('/', function (req, res, next) {
+  res.send('This is a put response')
+})
+
+router.post('/', function (req, res, next) {
+  res.send('This is a post response')
+})
+
+router.delete('/', function (req, res, next) {
+  res.send('This is a delete response')
+})
+
 module.exports = router
