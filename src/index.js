@@ -1,21 +1,24 @@
-const Axios = require('axios')
+const axios = require('axios')
 
-const client = Axios.create({
-  baseURL: 'http://localhost:3000',
-  timeout: 1000,
-  headers: { 'X-Custom-Header': 'foobar' },
-})
+console.log("Hi coyote, let's have some JavaScript fun!")
 
-async function getUsers() {
-  try {
-    const response = await client.get('/users')
-    let users = response.data.users
-    // console.log(users);
-    let emails = users.map(user => user.email)
-    console.log(emails)
-  } catch (error) {
-    console.error(error)
-  }
+// Fetch users with axios
+/* axios.get('http://localhost:3000/users').then(response => {
+  console.log(response.data)
+}) */
+
+// create a user with axios
+//An asynchronous function delivers its result asynchronously
+// for example, a callback-based function or a Promise-based function.
+// Promise constructor takes only one argument
+// Callback function takes two arguments, resolve and reject.
+
+async function main() {
+  const gurpreet = await axios.create({
+    baseURL: 'http://localhost:3000/',
+  })
+  const response = await gurpreet.get('/users')
+  console.log(response.data)
 }
 
-getUsers()
+main()
