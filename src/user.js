@@ -4,14 +4,8 @@ class User {
     this.email = email
     this.age = age
   }
-}
 
-class Image {
-  constructor(path, format, height, width) {
-    this.path = path
-  }
+  shareImage(image, description) {}
 }
-
-class Prediction {
-  constructor(image, text) {}
-}
+// Add method to share Images to User method
+module.exports = User
