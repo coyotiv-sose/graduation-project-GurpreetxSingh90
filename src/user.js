@@ -5,7 +5,11 @@ class User {
     this.age = age
   }
 
-  shareImage(image, description) {}
+  shareImage(image, description) {
+
+  }
+
+  joinCommunity(communityname) {}
 }
 // Add method to share Images to User method
 module.exports = User

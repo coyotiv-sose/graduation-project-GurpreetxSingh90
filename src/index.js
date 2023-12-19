@@ -26,6 +26,7 @@ async function main() {
 const User = require('./user')
 const Image = require('./image')
 const Prediction = require('./prediction')
+const Community = require('./community')
 
 const gurpreet = new User('Gurpreet', 'gurpreetxsingh90@gmail.com', '33')
 const imagePath =
@@ -33,11 +34,15 @@ const imagePath =
 
 const gurpreetImage = new Image(imagePath, 'jpeg', 1200, 800)
 const imagePrediction = new Prediction(gurpreetImage)
+const pancreasCommunity = new Community('pancreascommunity', 'pancreascommunity to discuss cancer stages', 'Admin')
 
 gurpreet.shareImage(gurpreetImage, 'imagedescription')
 
 gurpreetImage.storePrediction(gurpreetImage, imagePath)
+
 imagePrediction.predImage(imagePath, 1200, 800)
+
+gurpreet.joinCommunity('pancreascommunity')
 
 /* //function sum(num1, num2) {
   return num1 + num2
