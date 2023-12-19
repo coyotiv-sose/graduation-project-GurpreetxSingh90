@@ -1,8 +1,9 @@
 class Prediction {
-  constructor(image, text) {
+  constructor(image) {
     this.image = image
-    this.text = text
   }
+
+  predImage(path, height, width) {}
 }
 
 module.exports = Prediction
