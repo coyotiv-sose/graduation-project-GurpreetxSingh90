@@ -4,3 +4,5 @@ class Prediction {
     this.text = text
   }
 }
+
+module.exports = Prediction

@@ -5,6 +5,8 @@ class Image {
     this.height = height
     this.width = width
   }
+
+  storePrediction(image, path) {}
 }
 
 module.exports = Image
