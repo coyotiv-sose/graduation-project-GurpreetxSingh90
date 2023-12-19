@@ -36,7 +36,7 @@ const gurpreetImage = new Image(imagePath, 'jpeg', 1200, 800)
 const imagePrediction = new Prediction(gurpreetImage)
 const pancreasCommunity = new Community('pancreascommunity', 'pancreascommunity to discuss cancer stages', 'Admin')
 
-gurpreet.shareImage(gurpreetImage, 'imagedescription')
+gurpreet.sharePost(gurpreetImage, 'imagedescription')
 
 gurpreetImage.storePrediction(gurpreetImage, imagePath)
 
@@ -44,6 +44,7 @@ imagePrediction.predImage(imagePath, 1200, 800)
 
 gurpreet.joinCommunity('pancreascommunity')
 
+console.log('gurpreet has one post from posts list: ', gurpreet.posts.length)
 /* //function sum(num1, num2) {
   return num1 + num2
 }
