@@ -23,6 +23,7 @@ class User {
   }
 
   leaveCommunity(community) {
+    community.members.splice(this)
     this.communities.splice(community)
     return community
   }

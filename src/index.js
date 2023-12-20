@@ -47,12 +47,15 @@ gurpreet.joinCommunity(pancreasCommunity)
 
 numan.joinCommunity(pancreasCommunity)
 
+gurpreet.leaveCommunity(pancreasCommunity)
+
 console.log('gurpreet has joined community:', gurpreet.communities)
 console.log(
   'Pancreas Community has two member named as Gurpreet and Numan:',
   pancreasCommunity.members.map(member => member.name)
 )
 console.log('gurpreet has one post from posts list: ', gurpreet.posts.length)
+console.log('gurpreet would like to leave community:', gurpreet.communities)
 /* //function sum(num1, num2) {
   return num1 + num2
 }
