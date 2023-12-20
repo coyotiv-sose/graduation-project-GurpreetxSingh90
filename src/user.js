@@ -21,6 +21,11 @@ class User {
     this.communities.push(community)
     return community
   }
+
+  leaveCommunity(community) {
+    this.communities.splice(community)
+    return community
+  }
 }
 // Add method to share Images to User method
 module.exports = User
