@@ -1,7 +1,9 @@
+const Community = require('./community')
 const Post = require('./post')
 
 class User {
   posts = []
+  communities = []
   constructor(name, email, age) {
     this.name = name
     this.email = email
@@ -14,7 +16,11 @@ class User {
     return post
   }
 
-  joinCommunity(communityname) {}
+  joinCommunity(member) {
+    const community = new Community(member)
+    this.communities.push(community)
+    return community
+  }
 }
 // Add method to share Images to User method
 module.exports = User
