@@ -3,6 +3,7 @@ class Community {
     this.name = name
     this.description = description
     this.contact = contact
+    this.members = []
   }
 }
 

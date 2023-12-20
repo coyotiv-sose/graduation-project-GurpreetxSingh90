@@ -16,8 +16,8 @@ class User {
     return post
   }
 
-  joinCommunity(member) {
-    const community = new Community(member)
+  joinCommunity(community) {
+    community.members.push(this)
     this.communities.push(community)
     return community
   }
