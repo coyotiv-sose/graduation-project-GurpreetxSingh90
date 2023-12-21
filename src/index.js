@@ -27,6 +27,8 @@ const User = require('./user')
 const Image = require('./image')
 const Prediction = require('./prediction')
 const Community = require('./community')
+const Comment = require('./comment')
+const Post = require('./post')
 
 const gurpreet = new User('Gurpreet', 'gurpreetxsingh90@gmail.com', '33')
 const numan = new User('Numan', 'xyz@Gamepad.com', 30)
@@ -36,10 +38,9 @@ const imagePath =
 const gurpreetImage = new Image(imagePath, 'jpeg', 1200, 800)
 const imagePrediction = new Prediction(gurpreetImage)
 const pancreasCommunity = new Community('pancreascommunity', 'pancreascommunity to discuss cancer stages', 'Admin')
-
-gurpreet.sharePost(gurpreetImage, 'imagedescription')
-
-gurpreetImage.storePrediction(gurpreetImage, imagePath)
+const myPost = new Post('new post from hamburg', imagePath)
+myPost.addComment('Hamburg you beauty', 'gurpreet')
+console.log('gurpreet has added new comment:', 'Hamburg you beauty')
 
 imagePrediction.predImage(imagePath, 1200, 800)
 

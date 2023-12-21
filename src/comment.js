@@ -4,3 +4,5 @@ class Comment {
     this.author = author
   }
 }
+
+module.exports = Comment

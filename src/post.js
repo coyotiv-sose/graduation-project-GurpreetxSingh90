@@ -1,7 +1,15 @@
+const Comment = require('./comment')
+
 class Post {
-  constructor(description, image) {
+  comments = []
+  constructor(description, imagepath) {
     this.description = description
-    this.image = image
+    this.imagepath = imagepath
+  }
+
+  addComment(text, author) {
+    const newComment = new Comment(text, author)
+    this.comments.push(newComment)
   }
 }
 
