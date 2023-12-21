@@ -23,9 +23,9 @@ async function main() {
 
 // main()
 
-const User = require('./user')
+const User = require('../user')
 const Image = require('./image')
-const Prediction = require('./prediction')
+const Prediction = require('../prediction')
 const Community = require('./community')
 const Comment = require('./comment')
 const Post = require('./post')
