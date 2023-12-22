@@ -19,6 +19,9 @@ async function main() {
     baseURL: 'http://localhost:3000',
   })
 
+  const allUsersResponse = await client.get('/users')
+  console.log(allUsersResponse.data)
+
   // Use the client to make a POST request to create a new user named Gurpreet
   const gurpreet = await client.post('/users', {
     name: 'gurpreet',
@@ -26,10 +29,16 @@ async function main() {
     age: 33,
   })
 
+  const numan = await client.post('/users', {
+    name: 'numan',
+    email: 'numan@xyz.com',
+    age: 30,
+  })
   console.log(gurpreet.data)
+  await client.get('/users').then(response => console.log('all Users before delete', response.data))
+  // await client.delete('/users/gurpreet')
 
-  const allUsersResponse = await client.get('/users')
-  console.log(allUsersResponse.data)
+  await client.get('/users').then(response => console.log('allUsersResponse', response.data))
 }
 
 // Call the main function to execute the asynchronous code

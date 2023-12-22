@@ -5,7 +5,7 @@ class User {
   // Initializing instance properties
   posts = []
   communities = []
-  communities = []
+  comments = []
   // Constructor for the User class
   constructor(name, email, age) {
     this.name = name
@@ -27,7 +27,7 @@ class User {
     // Add the user to the community's members array
     community.members.push(this)
     // Add the community to the user's communities array
-    this.communities.push(community)
+    this.communities.push(community.name)
     return community
   }
 
