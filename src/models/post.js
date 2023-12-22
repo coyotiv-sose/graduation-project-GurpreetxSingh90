@@ -10,6 +10,7 @@ class Post {
   addComment(text, author) {
     const newComment = new Comment(text, author)
     this.comments.push(newComment)
+    return newComment
   }
 }
 

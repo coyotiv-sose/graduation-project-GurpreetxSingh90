@@ -28,14 +28,16 @@ class User {
     return community
   }
 
+  // Static method to create a new User instance and add it to the list
   static create({ name, email, age }) {
+    // Create a new User instance with the provided information
     const newUser = new User(name, email, age)
-
+    // Add the newly created User instance to the list
     User.list.push(newUser)
 
     return newUser
   }
-
+  // Static property to store a list of all created User instances
   static list = []
 }
 // Add method to share Images to User method
