@@ -27,6 +27,16 @@ class User {
     this.communities.splice(community)
     return community
   }
+
+  static create({ name, email, age }) {
+    const newUser = new User(name, email, age)
+
+    User.list.push(newUser)
+
+    return newUser
+  }
+
+  static list = []
 }
 // Add method to share Images to User method
 module.exports = User
