@@ -39,6 +39,16 @@ async function main() {
   // await client.delete('/users/gurpreet')
 
   await client.get('/users').then(response => console.log('allUsersResponse', response.data))
+
+  // Use the client to make a PUT request to update a new user named Ingrid
+  const ingrid = await client.put('/users/ingrid', {
+    name: 'ingrid',
+    email: 'ingrid@xyz.com',
+    age: 33,
+  })
+
+  // Use the client to make a GET request to get a single user named Ingrid
+  const singleUserResponse = await client.get('/users/ingrid')
 }
 
 // Call the main function to execute the asynchronous code
