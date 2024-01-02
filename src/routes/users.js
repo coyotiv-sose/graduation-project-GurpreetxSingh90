@@ -43,18 +43,23 @@ router.delete('/:userName', function (req, res, next) {
   res.sendStatus(200)
 })
 
-// HTTP GET route handler for update a user
+// HTTP PUT route handler for update a user
 
 router.put('/:userName', function (req, res, next) {
   const userIndex = User.list.findIndex(user => user.name === req.params.userName)
+
   if (userIndex == -1) {
     return next({
       status: 404,
       message: 'user not found',
     })
   }
-  const { name, email, age } = req.body
-  User.list[userIndex] = { name, email, age }
+
+  const { updatedUserData } = req.body
+  const updatedUser = { ...User.list[userIndex], ...updatedUserData }
+
+  User.list.splice(userIndex, 1, updatedUser)
+
   res.sendStatus(200)
 })
 
@@ -68,7 +73,19 @@ router.get('/:userName', function (req, res, next) {
       message: 'user not found',
     })
   }
-  res.send(User.list[userIndex])
+  res.send(User.list[userIndex]) //sending the user as the response
+})
+
+// HTTP route handler for all posts for a specific user
+router.get('/:userName/posts', function (req, res, next) {
+  const userIndex = User.list.findIndex(user => user.name === req.params.userName)
+  if (userIndex == -1) {
+    return next({
+      status: 404,
+      message: 'user not found',
+    })
+  }
+  res.send(User.list[userIndex].posts)
 })
 
 module.exports = router
