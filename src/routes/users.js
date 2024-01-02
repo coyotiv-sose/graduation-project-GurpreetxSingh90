@@ -42,4 +42,33 @@ router.delete('/:userName', function (req, res, next) {
   // const deleteUser = User.delete({ name, email, age })
   res.sendStatus(200)
 })
+
+// HTTP GET route handler for update a user
+
+router.put('/:userName', function (req, res, next) {
+  const userIndex = User.list.findIndex(user => user.name === req.params.userName)
+  if (userIndex == -1) {
+    return next({
+      status: 404,
+      message: 'user not found',
+    })
+  }
+  const { name, email, age } = req.body
+  User.list[userIndex] = { name, email, age }
+  res.sendStatus(200)
+})
+
+// HTTP GET route handler for getting a single user
+
+router.get('/:userName', function (req, res, next) {
+  const userIndex = User.list.findIndex(user => user.name === req.params.userName)
+  if (userIndex == -1) {
+    return next({
+      status: 404,
+      message: 'user not found',
+    })
+  }
+  res.send(User.list[userIndex])
+})
+
 module.exports = router
