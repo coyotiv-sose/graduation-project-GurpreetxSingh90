@@ -45,9 +45,13 @@ router.delete('/:userName', function (req, res, next) {
 
 // HTTP PUT route handler for update a user
 
+// Define a route for updating user data by userName
 router.put('/:userName', function (req, res, next) {
+  // Find the index of the user in the list based on the provided userName
+
   const userIndex = User.list.findIndex(user => user.name === req.params.userName)
 
+  // If the user is not found, return a 404 error with a message
   if (userIndex == -1) {
     return next({
       status: 404,
@@ -55,11 +59,16 @@ router.put('/:userName', function (req, res, next) {
     })
   }
 
+  // Extract updated user data from the request body
   const { updatedUserData } = req.body
+
+  // Create an updatedUser object by merging the existing user data with the updatedUserData
   const updatedUser = { ...User.list[userIndex], ...updatedUserData }
 
+  // Replace the old user data with the updatedUser data at the specified index
   User.list.splice(userIndex, 1, updatedUser)
 
+  // Send a success status (HTTP 200) back to the client
   res.sendStatus(200)
 })
 
