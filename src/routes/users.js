@@ -115,7 +115,7 @@ router.post('/:userName/posts', function (req, res, next) {
   const { title, content } = req.body
   // Add the new post to the user's posts array
   User.list[userIndex].posts.push({ title, content })
-  // Send a 200 OK response to indicate success
+  // Send a 200 OK response to indicate succes
   res.sendStatus(200)
 })
 
