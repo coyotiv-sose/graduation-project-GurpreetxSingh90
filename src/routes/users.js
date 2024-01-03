@@ -119,4 +119,58 @@ router.post('/:userName/posts', function (req, res, next) {
   res.sendStatus(200)
 })
 
+// HTTP PUT route handler to join community for a specific user
+
+router.put('/:userName/communities/:communityId', function (req, res, next) {
+  // Find the index of the user in the user list based on the provided userName
+  const userIndex = User.list.findIndex(user => user.name === req.params.userName)
+  // If the user is not found, return a 404 error
+  if (userIndex == -1) {
+    return next({
+      status: 404,
+      message: 'user not found',
+    })
+  }
+  // Find the index of the community in the community list based on the provided communityId
+  const communityIndex = Community.list.findIndex(community => community.id === req.params.communityId)
+  // If the community is not found, return a 404 error
+  if (communityIndex == -1) {
+    return next({
+      status: 404,
+      message: 'community not found',
+    })
+  }
+  // Add the community to the user's communities array
+  User.list[userIndex].communities.push(Community.list[communityIndex])
+  // Send a 200 OK response to indicate success
+  res.sendStatus(200)
+})
+
+// HTTP DELETE route handler to leave community for a specific user
+
+router.delete('/:userName/communities/:communityId', function (req, res, next) {
+  // Find the index of the user in the user list based on the provided userName
+  const userIndex = User.list.findIndex(user => user.name === req.params.userName)
+  // If the user is not found, return a 404 error
+  if (userIndex == -1) {
+    return next({
+      status: 404,
+      message: 'user not found',
+    })
+  }
+  // Find the index of the community in the community list based on the provided communityId
+  const communityIndex = Community.list.findIndex(community => community.id === req.params.communityId)
+  // If the community is not found, return a 404 error
+  if (communityIndex == -1) {
+    return next({
+      status: 404,
+      message: 'community not found',
+    })
+  }
+  // Remove the community from the user's communities array
+  User.list[userIndex].communities.splice(communityIndex, 1)
+  // Send a 200 OK response to indicate success
+  res.sendStatus(200)
+})
+
 module.exports = router
