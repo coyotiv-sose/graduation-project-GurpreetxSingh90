@@ -85,7 +85,7 @@ router.get('/:userName', function (req, res, next) {
   res.send(User.list[userIndex]) //sending the user as the response
 })
 
-// HTTP route handler for all posts for a specific user
+// HTTP GET route handler for all posts for a specific user
 router.get('/:userName/posts', function (req, res, next) {
   const userIndex = User.list.findIndex(user => user.name === req.params.userName)
   if (userIndex == -1) {
@@ -95,6 +95,28 @@ router.get('/:userName/posts', function (req, res, next) {
     })
   }
   res.send(User.list[userIndex].posts)
+})
+
+// HTTP POST route handler for creating a new post for a specific user
+router.post('/:userName/posts', function (req, res, next) {
+  // Find the index of the user in the user list based on the provided userName
+
+  const userIndex = User.list.findIndex(user => user.name === req.params.userName)
+
+  // If the user is not found, return a 404 error
+  if (userIndex == -1) {
+    return next({
+      status: 404,
+      message: 'user not found',
+    })
+  }
+
+  // Extract the title and content from the request body
+  const { title, content } = req.body
+  // Add the new post to the user's posts array
+  User.list[userIndex].posts.push({ title, content })
+  // Send a 200 OK response to indicate success
+  res.sendStatus(200)
 })
 
 module.exports = router

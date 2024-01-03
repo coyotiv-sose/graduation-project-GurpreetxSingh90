@@ -51,6 +51,9 @@ async function main() {
 
   // Use the client to make a GET request to get a single user named Ingrid
   const singleUserResponse = await client.get('/users/ingrid')
+  console.log(singleUserResponse.data)
+
+  // Use the client to make a GET request to get all users
 
   const allUsersResponse = await client.get('/users')
   console.log(allUsersResponse.data)
