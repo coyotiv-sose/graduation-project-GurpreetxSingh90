@@ -112,16 +112,20 @@ router.post('/:userName/posts', function (req, res, next) {
   }
 
   // Extract the title and content from the request body
-  const { title, content } = req.body
+  const { image, description } = req.body
   // Add the new post to the user's posts array
-  User.list[userIndex].posts.push({ title, content })
+  // User.list[userIndex].posts.push({ title, content })
+
+  const user = User.list[userIndex]
+
+  const newPost = user.sharePost(image, description)
   // Send a 200 OK response to indicate succes
-  res.sendStatus(200)
+  res.send(newPost)
 })
 
-// HTTP PUT route handler to join community for a specific user
+// HTTP POST route handler to join community for a specific user
 
-router.put('/:userName/communities/:communityId', function (req, res, next) {
+router.post('/:userName/communities/:communityId', function (req, res, next) {
   // Find the index of the user in the user list based on the provided userName
   const userIndex = User.list.findIndex(user => user.name === req.params.userName)
   // If the user is not found, return a 404 error
@@ -173,4 +177,40 @@ router.delete('/:userName/communities/:communityId', function (req, res, next) {
   res.sendStatus(200)
 })
 
+// GET home page
+
+router.get('/', function (req, res, next) {
+  res.render('index', { title: 'Express' })
+})
 module.exports = router
+
+/*
+ /users -
+    post=> create a new user,
+    get=> fetch all users
+ /users/userId -
+    delete=>delete a specific user,
+    put=> update the user
+ /users/userId/posts -
+    get=> fetch all posts
+
+ /posts -
+    post(http method)=>create a new post
+ /posts/postId -
+    delete=>delete a post,
+    put=>update the post
+ /posts/postId/comments - post=>create a comment for a post
+
+ /communities -
+    first route handler: post=>create a community,
+    second route handler: get=> fetch all communities
+ /communities/communitiesId -
+    get
+    delete
+    put
+  /communities/communitiesId/members
+    post => to join a community
+    get => fetch all members
+  /communities/communitiesId/members/memberId
+    delete => to leave from community
+*/
