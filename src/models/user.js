@@ -1,17 +1,27 @@
 const Community = require('./community')
 const Post = require('./post')
+const mongoose = require('mongoose')
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  age: Number,
+  communities: [String],
+  posts: [String],
+  comments: [String],
+})
 
 class User {
   // Initializing instance properties
-  posts = []
-  communities = []
-  comments = []
-  // Constructor for the User class
-  constructor(name, email, age) {
-    this.name = name
-    this.email = email
-    this.age = age
-  }
+  // posts = []
+  // communities = []
+  // comments = []
+  // // Constructor for the User class
+  // constructor(name, email, age) {
+  //   this.name = name
+  //   this.email = email
+  //   this.age = age
+  // }
 
   // Method for a user to share a post
   sharePost(image, description) {
@@ -62,4 +72,5 @@ class User {
   static list = []
 }
 // Add method to share Images to User method
-module.exports = User
+// module.exports = User
+module.exports = mongoose.model('User', userSchema)
