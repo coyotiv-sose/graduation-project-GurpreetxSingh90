@@ -53,8 +53,13 @@ async function main() {
   const singleUserResponse = await client.get('/users/ingrid')
   console.log(singleUserResponse.data)
 
+  //create a post
+  const gurpreetsFirstPost = await client.post('/users/gurpreet/posts', {
+    image: 'image',
+    description: 'test description',
+  })
+  console.log('gurpreetsFirstPost: ', gurpreetsFirstPost.data)
   // Use the client to make a GET request to get all users
-
   const allUsersResponse = await client.get('/users')
   console.log(allUsersResponse.data)
 }
