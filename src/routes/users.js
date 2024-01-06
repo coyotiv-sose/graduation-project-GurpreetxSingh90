@@ -1,11 +1,15 @@
 var express = require('express')
 var router = express.Router()
 const User = require('../models/user')
-const { restart } = require('nodemon')
-const users = [{ name: 'John Doe' }, { name: 'Jane' }]
+
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send(User.list)
+router.get('/', async function (req, res, next) {
+  // Fetch all users from the database using Mongoose
+  // and send the result as the HTTP response
+  const users = await User.find()
+  // const users = User.find().then(users => {
+  res.send(users)
+  //res.send(User.list)
 })
 /*  res.render('users', {
     user: {
@@ -17,11 +21,11 @@ router.get('/', function (req, res, next) {
 
 /* Create a new user */
 // HTTP POST route handler for creating a new user
-router.post('/', function (req, res, next) {
+router.post('/', async function (req, res, next) {
   // Extracting user data (name, email, age) from the request body
   const { name, email, age } = req.body
   // Creating a new user using the static create method from the User class
-  User.create({ name, email, age })
+  await User.create({ name, email, age })
   // Sending the newly created user as the response
   // res.send(newUser)
   res.sendStatus(200)
@@ -98,13 +102,14 @@ router.get('/:userName/posts', function (req, res, next) {
 })
 
 // HTTP POST route handler for creating a new post for a specific user
-router.post('/:userName/posts', function (req, res, next) {
+router.post('/:userName/posts', async function (req, res, next) {
   // Find the index of the user in the user list based on the provided userName
 
-  const userIndex = User.list.findIndex(user => user.name === req.params.userName)
+  //const userIndex = await User.list.findIndex(user => user.name === req.params.userName)
+  const user = await User.findOne({ name: req.params.userName })
 
   // If the user is not found, return a 404 error
-  if (userIndex == -1) {
+  if (!user) {
     return next({
       status: 404,
       message: 'user not found',
@@ -116,7 +121,7 @@ router.post('/:userName/posts', function (req, res, next) {
   // Add the new post to the user's posts array
   // User.list[userIndex].posts.push({ title, content })
 
-  const user = User.list[userIndex]
+  // const user = User.list[userIndex]
 
   const newPost = user.sharePost(image, description)
   // Send a 200 OK response to indicate succes
