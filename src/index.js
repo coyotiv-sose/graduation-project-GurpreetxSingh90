@@ -39,7 +39,7 @@ async function main() {
   })
 
   // console.log(gurpreet.data)
-  await client.get('/users').then(response => console.log('all Users before delete', response.data))
+  // await client.get('/users').then(response => console.log('all Users before delete', response.data))
   // // await client.delete('/users/gurpreet')
 
   // await client.get('/users').then(response => console.log('allUsersResponse', response.data))
@@ -53,19 +53,19 @@ async function main() {
   // const singleUserResponse = await client.get('/users/ingrid')
   // console.log(singleUserResponse.data)
 
-  // //create a post
-  // const gurpreetsFirstPost = await client.post('/users/gurpreet/posts', {
-  //   image: 'image',
-  //   description: 'test description',
-  // })
-  // console.log('gurpreetsFirstPost: ', gurpreetsFirstPost.data)
+  //create a post
+  const gurpreetsFirstPost = await client.post('/users/gurpreet/posts', {
+    image: 'image',
+    description: 'test description',
+  })
+  console.log('gurpreetsFirstPost: ', gurpreetsFirstPost.data)
   // // Use the client to make a GET request to get all users
-  // const allUsersResponse = await client.get('/users')
-  // console.log(allUsersResponse.data)
+  const allUsersResponse = await client.get('/users')
+  console.log(allUsersResponse.data)
 }
 
 // Call the main function to execute the asynchronous code
-main()
+main().catch(error => console.error(error.data))
 
 // const User = require('../user')
 // const Image = require('./src/models/image')
