@@ -1,7 +1,11 @@
 FROM node:alpine
 
-ADD . .
+ADD package.json package-lock.json ./
 
 RUN npm install
+RUN npm install -g nodemon
 
-CMD ["npm", "start"]
+ADD bin ./bin
+ADD src ./src
+
+CMD ["nodemon"]
