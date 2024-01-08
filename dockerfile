@@ -1,7 +1,7 @@
-From node:alpine
+FROM node:alpine
 
 ADD . .
 
-Run npm install
+RUN npm install
 
 CMD ["npm", "start"]
