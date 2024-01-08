@@ -22,6 +22,16 @@ class User {
     return post
   }
 
+  async createCommunity(name, description) {
+    const community = await Community.create({ name, description, contact: this })
+
+    this.communities.push(community)
+
+    await this.save()
+
+    return community
+  }
+
   joinCommunity(community) {
     community.members.push(this)
 
