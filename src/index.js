@@ -38,6 +38,12 @@ async function main() {
     age: 33,
   })
 
+  const armagan = await client.post('/users', {
+    name: 'armagan',
+    email: 'armagan@xyz.com',
+    age: 40,
+  })
+
   // console.log(gurpreet.data)
   // await client.get('/users').then(response => console.log('all Users before delete', response.data))
   // // await client.delete('/users/gurpreet')
@@ -59,6 +65,14 @@ async function main() {
     description: 'test description',
   })
   console.log('gurpreetsFirstPost: ', gurpreetsFirstPost.data)
+
+  // create a community
+  const pancreasCommunity = await client.post('/communities', {
+    name: 'pancreascommunity',
+    description: 'pancreascommunity to discuss cancer stages',
+    userId: armagan.data._id,
+  })
+
   // // Use the client to make a GET request to get all users
   const allUsersResponse = await client.get('/users')
   console.log(allUsersResponse.data)
