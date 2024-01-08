@@ -1,10 +1,22 @@
-class Community {
-  constructor(name, description, contact) {
-    this.name = name
-    this.description = description
-    this.contact = contact
-    this.members = []
-  }
-}
+const mongoose = require('mongoose')
+const autopopulate = require('mongoose-autopopulate')
 
-module.exports = Community
+const communitySchema = new mongoose.Schema({
+  name: String,
+  description: String,
+  contact: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    autopopulate: true,
+  },
+  members: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      autopopulate: true,
+    },
+  ],
+})
+class Community {}
+communitySchema.plugin(autopopulate)
+module.exports = mongoose.model('Community', communitySchema)
